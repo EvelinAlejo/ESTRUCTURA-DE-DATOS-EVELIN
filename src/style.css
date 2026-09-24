@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap');
+
+body {
+  background: #0a0a12;
+  background-image: radial-gradient(circle at 50% 0%, #1a1a3d 0%, #0a0a12 70%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  color: rgb(238, 228, 228);
+}
+
+.titulo {
+  font-size: 26px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  background: linear-gradient(90deg, #00f2ff, #8a2be2, #ff00c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0}

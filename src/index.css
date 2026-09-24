@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #05050f;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(255, 0, 200, 0.10) 0%, transparent 55%),
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  min-height: 100vh;
+  font-family: 'Share Tech Mono', 'Orbitron', monospace;
+  color: #e0e0ff;
+}
+
+/* ===== TÍTULO PRINCIPAL ===== */
+.app-titulo {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #ff00c8;
+  text-shadow:
+    0 0 8px #ff00c8,
+    0 0 20px #ff00c8,
+    0 0 40px #ff00c8;
+  margin: 50px 0 30px;
+  animation: pulso 2.5s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { text-shadow: 0 0 8px #ff00c8, 0 0 20px #ff00c8, 0 0 40px #ff00c8; }
+  50%       { text-shadow: 0 0 15px #ff00c8, 0 0 35px #ff00c8, 0 0 70px #ff00c8; }
+}
+
+/* ===== CONTENEDOR ===== */
+.futurista-container {
+  max-width: 460px;
+  margin: 30px auto;
+  padding: 28px 26px;
+  background: rgba(8, 8, 22, 0.92);
+  border: 1.5px solid #00ffff;
+  border-radius: 14px;
+  box-shadow:
+    0 0 18px rgba(0, 255, 255, 0.35),
+    0 0 50px rgba(0, 255, 255, 0.12),
+    inset 0 0 25px rgba(0, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.futurista-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, #ff00c8, #00ffff, transparent);
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ===== TÍTULO SECCIÓN ===== */
+.futurista-titulo {
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff, 0 0 18px rgba(0, 255, 255, 0.6);
+  margin: 0 0 22px;
+}
+
+/* ===== FORM ===== */
+.futurista-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.futurista-input {
+  flex: 1;
+  padding: 12px 14px;
+  background: rgba(0, 15, 30, 0.9);
+  border: 1.5px solid #00ffff;
+  border-radius: 8px;
+  color: #00ffff;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.futurista-input::placeholder {
+  color: rgba(0, 255, 255, 0.35);
+}
+
+.futurista-input:focus {
+  border-color: #ff00c8;
+  box-shadow:
+    0 0 12px rgba(255, 0, 200, 0.6),
+    inset 0 0 10px rgba(255, 0, 200, 0.15);
+}
+
+/* ===== BOTONES ===== */
+.futurista-btn {
+  padding: 12px 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1.5px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.25s ease;
+  font-size: 0.8rem;
+}
+
+.futurista-btn-push {
+  border-color: #00ff88;
+  color: #00ff88;
+  text-shadow: 0 0 6px #00ff88;
+}
+
+.futurista-btn-push:hover {
+  background: #00ff88;
+  color: #05050f;
+  box-shadow: 0 0 18px #00ff88, 0 0 40px rgba(0, 255, 136, 0.4);
+  transform: translateY(-1px);
+}
+
+.futurista-btn-pop {
+  border-color: #ff0055;
+  color: #ff0055;
+  text-shadow: 0 0 6px #ff0055;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.futurista-btn-pop:hover:not(:disabled) {
+  background: #ff0055;
+  color: #05050f;
+  box-shadow: 0 0 18px #ff0055, 0 0 40px rgba(255, 0, 85, 0.4);
+  transform: translateY(-1px);
+}
+
+.futurista-btn-pop:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* ===== PANEL DE INFO (ahora con grid para que se vea alineado) ===== */
+.futurista-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.futurista-info-item {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 10px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: inset 0 0 12px rgba(0, 255, 255, 0.08);
+}
+
+.futurista-info-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(0, 255, 255, 0.7);
+}
+
+.futurista-info-valor {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #ff00c8;
+  text-shadow: 0 0 10px #ff00c8, 0 0 20px rgba(255, 0, 200, 0.5);
+  word-break: break-all;
+  text-align: center;
+}
+
+/* ===== PILA VISUAL ===== */
+.futurista-pila {
+  border: 1.5px solid #00ffff;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 180px;
+  justify-content: flex-end;
+  background: rgba(0, 8, 18, 0.7);
+  box-shadow:
+    inset 0 0 25px rgba(0, 255, 255, 0.08),
+    0 0 12px rgba(0, 255, 255, 0.25);
+  position: relative;
+}
+
+/* Etiqueta "PILA" arriba de la caja */
+.futurista-pila::before {
+  content: 'STACK';
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: #05050f;
+  padding: 0 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff;
+}
+
+.futurista-vacia {
+  text-align: center;
+  color: rgba(0, 255, 255, 0.3);
+  font-style: italic;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  margin: auto;
+}
+
+.futurista-item {
+  padding: 12px 14px;
+  text-align: center;
+  border-radius: 7px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  animation: aparecer 0.35s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-15px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.futurista-item-tope {
+  background: linear-gradient(135deg, #ff00c8, #ff6600);
+  color: #fff;
+  border: 1.5px solid #ff00c8;
+  box-shadow:
+    0 0 14px #ff00c8,
+    0 0 30px rgba(255, 0, 200, 0.45),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 0 6px #fff;
+}
+
+.futurista-item-normal {
+  background: linear-gradient(135deg, #003355, #0066aa);
+  color: #00ffff;
+  border: 1.5px solid #00ffff;
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.45),
+    inset 0 0 10px rgba(0, 255, 255, 0.2);
+  text-shadow: 0 0 6px #00ffff;
+}
+
+.futurista-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
