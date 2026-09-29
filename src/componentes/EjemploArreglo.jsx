@@ -1,6 +1,18 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
 function EjemploArreglo() {
+
+   //iniciamos con un estado para un areglo 
+  const [elementos, setElemntos]=useState(["evelin"])
+
+  //craer función para agregra dato 
+  const agregarDato=()=>{
+    console.log(elemento)
+    const nuevoNumero=Math.floor(Math.random()*50)
+    setElemntos([...elementos, nuevoNumero])
+  }
+
   const [stack, setStack] = useState([]);
   const [inputValue, setInputValue] = useState("");
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 function Pila() {
-  const [stack, setStack] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [stack, setStack] = useState(["evelin"]);
+  const [inputValue, setInputValue] = useState("evelin");
 
   //Agregar valores a la pila o arreglo
   const handlePush = (e) => {
