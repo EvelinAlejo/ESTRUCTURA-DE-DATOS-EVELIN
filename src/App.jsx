@@ -14,7 +14,7 @@ function App() {
       {/* Aquí se muestra el componente del arreglo */}
       <EjemploArreglo />
 
-      {/* Aquí se muestra el Ejemplo2 👇 */}
+      {/* Aquí se muestra el Ejemplo2  */}
       <Ejemplo2 />
     </div>
   );
