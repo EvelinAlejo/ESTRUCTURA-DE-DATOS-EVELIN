@@ -1,22 +1,19 @@
 import { useState } from "react";
-import { useEffect } from "react";
 
 function EjemploArreglo() {
+  // Estado para el arreglo inicial
+  const [elementos, setElementos] = useState(["evelin"])
 
-   //iniciamos con un estado para un areglo 
-  const [elementos, setElemntos]=useState(["evelin"])
-
-  //craer función para agregra dato 
-  const agregarDato=()=>{
-    console.log(elemento)
-    const nuevoNumero=Math.floor(Math.random()*50)
-    setElemntos([...elementos, nuevoNumero])
+ 
+  const agregarDato = () => {
+    const nuevoNumero = Math.floor(Math.random() * 50)
+    setElementos([...elementos, nuevoNumero])
   }
 
   const [stack, setStack] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  //Agregar valores a la pila o arreglo
+
   const handlePush = (e) => {
     e.preventDefault();
     if (inputValue.trim() === "") return;
@@ -24,91 +21,76 @@ function EjemploArreglo() {
     setInputValue("");
   };
 
-  //Eliminar valores del arreglo pop
   const handlePop = () => {
     if (stack.length === 0) return;
     const nuevoStack = stack.slice(1);
     setStack(nuevoStack);
   };
 
-  const elementoTope = stack.length > 0 ? stack[0] : "La pila está vacía";
+  const elementoTope = stack.length > 0 ? stack[0] : "Vacía";
 
   return (
-    <>
-      <div
-        style={{
-          padding: "20px",
-          fontFamily: "Arial, sans-serif",
-          maxWidth: "400px",
-          margin: "0 auto",
-        }}
-      >
-        <h2>Visualizar los datos de la Pila</h2>
-        
-        {/*Inicializamos el formulario para introducir datos */}
-        <form onSubmit={handlePush} style={{ marginBottom: '15px' }}>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Introduce un dato"
-            style={{ padding: "8px", marginRight: "10px" }}
-          />
-          <button
-            type="submit"
-            style={{ padding: "8px 12px", background: "#4CAF50", color: "white", border: "none", cursor: "pointer" }}
-          >
-            Push
-          </button>
-        </form>
+    <div className="futurista-container">
+      <h2 className="futurista-titulo">構造 // Estructura de Pila</h2>
 
-        {/*Botón para eliminar los elementos */}
-        <button
-          onClick={handlePop}
-          disabled={stack.length === 0}
-          style={{
-            padding: "8px 12px",
-            background: "#f44336",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-            marginBottom: "20px",
-          }}
-        >
-          Pop
+      {/* Formulario para introducir datos */}
+      <form onSubmit={handlePush} className="futurista-form">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Introduce un dato"
+          className="futurista-input"
+        />
+        <button type="submit" className="futurista-btn futurista-btn-push">
+          押込 Push
         </button>
+      </form>
 
-        {/* Información del tope y tamaño */}
-        <div style={{ marginBottom: '20px', backgroundColor: '#f0f0f0', padding: '10px', borderRadius: '4px' }}>
-          <p><strong>Tope actual:</strong> {elementoTope}</p>
-          <p><strong>Tamaño de la pila:</strong> {stack.length}</p>
+      {/* Botón para eliminar el elemento superior */}
+      <button
+        onClick={handlePop}
+        disabled={stack.length === 0}
+        className="futurista-btn futurista-btn-pop"
+      >
+        取出 Pop (Eliminar Tope)
+      </button>
+
+      {/* Información del tope y tamaño */}
+      <div className="futurista-info">
+        <div className="futurista-info-item">
+          <span className="futurista-info-label">頂点 // Tope Actual</span>
+          <span className="futurista-info-valor" style={{ fontSize: '1.1rem' }}>
+            {elementoTope}
+          </span>
         </div>
-
-        {/* Representación visual de la Pila */}
-        <div style={{ border: '2px solid #333', borderTop: 'none', padding: '10px', display: 'flex', flexDirection: 'column', gap: '5px', minHeight: '150px', justifyContent: 'end' }}>
-          {stack.length === 0 ? (
-            <p style={{ textAlign: 'center', color: '#999' }}>Estructura vacía</p>
-          ) : (
-            stack.map((item, index) => (
-              <div 
-                key={index} 
-                style={{
-                  padding: '10px',
-                  backgroundColor: index === 0 ? '#ffeb3b' : '#2196F3',
-                  color: index === 0 ? '#000' : '#fff',
-                  textAlign: 'center',
-                  borderRadius: '4px',
-                  fontWeight: index === 0 ? 'bold' : 'normal',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                }}
-              >
-                {item} {index === 0 && ' ← TOPE'}
-              </div>
-            ))
-          )}
+        <div className="futurista-info-item">
+          <span className="futurista-info-label">要素 // Elementos</span>
+          <span className="futurista-info-valor">{stack.length}</span>
         </div>
       </div>
-    </>
+
+      {/* Representación visual de la Pila estilo tecnológico japonés */}
+      <div className="futurista-pila">
+        {stack.length === 0 ? (
+          <p className="futurista-vacia">空 // La estructura está vacía</p>
+        ) : (
+          stack.map((item, index) => (
+            <div
+              key={index}
+              className={
+                index === 0
+                  ? "futurista-item futurista-item-tope"
+                  : "futurista-item futurista-item-normal"
+              }
+            >
+              <span>{item}</span>
+              {index === 0 && <span className="futurista-tag">TOPE // 頂点</span>}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
   );
 }
 

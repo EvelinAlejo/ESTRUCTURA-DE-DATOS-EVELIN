@@ -4,7 +4,29 @@ export default function Ejemplo2() {
   const [alumnos, setAlumnos] = useState([{ id: 1, nombre: "Juan", asistencia: 1 }])
   const [nuevoNombre, setNuevoNombre] = useState("")
 
-  //Crear primera función
+
+  // 1. ELIMINAR 
+
+  const eliminarObjeto = (id) => {
+    const lima = alumnos.filter((alumno) => alumno.id !== id)
+    setAlumnos(lima)
+  }
+
+ 
+  // 2. ACTUALIZAR 
+ 
+  const actualizar = (dato) => {
+    const nuevoIngresoN = prompt("Escribe el nuevo nombre por favor ")
+    if (!nuevoIngresoN || nuevoIngresoN.trim() === "") return
+
+    const listaNueva = alumnos.map((x) =>
+      x.id === dato ? { ...x, nombre: nuevoIngresoN } : x
+    )
+    setAlumnos(listaNueva)
+  }
+
+  // 3. AGREGAR 
+
   const agregarAlumno = (e) => {
     e.preventDefault()
     if (nuevoNombre.trim() === "") return
@@ -13,85 +35,73 @@ export default function Ejemplo2() {
       nombre: nuevoNombre,
       asistencia: 0
     }
-    //Introducir valores al arreglo
-    setAlumnos([...alumnos, nuevoAlumno])  // ← CORREGIDO: antes guardaba nuevoNombre
+    setAlumnos([...alumnos, nuevoAlumno])
     setNuevoNombre("")
   }
 
-  //Eliminar objeto
-  const eliminarObjeto = (id) => {
-    const listaFilter = alumnos.filter((alumno) => alumno.id !== id)  // ← CORREGIDO: !== en vez de ===
-    setAlumnos(listaFilter)
-  }
-
-  //esta es para actualizar
-  const actualizar = (dato) => {
-    //aquí pido el nuevo nombre
-    const nuevoIngresoN = prompt("Escribe el nuevo nombre")  // ← CORREGIDO: texto sin errores
-    if (!nuevoIngresoN || nuevoIngresoN.trim() === "") return
-    //recorro con el .map
-    const listaNueva = alumnos.map((flash) =>
-      flash.id === dato
-        ? { ...flash, nombre: nuevoIngresoN }
-        : flash
-    )
-    setAlumnos(listaNueva)  // ← NUEVO: faltaba guardar la lista nueva
-  }
-
   return (
-    <div style={{ padding: "20px", maxWidth: "500px", margin: "0 auto" }}>
-      <h1>Operaciones con arreglos</h1>
+    <div className="futurista-container">
+      <h2 className="futurista-titulo">管理 // Gestión de Alumnos</h2>
 
-      {/* Formulario para agregar los datos */}
-      <form onSubmit={agregarAlumno} style={{ marginBottom: "20px" }}>
+      {/* Formulario para agregar */}
+      <form onSubmit={agregarAlumno} className="futurista-form">
         <input
           type="text"
           value={nuevoNombre}
           onChange={(e) => setNuevoNombre(e.target.value)}
-          placeholder="Ingresa un nombre"
-          style={{ padding: "8px 12px", marginRight: "10px", width: "60%" }}
+          placeholder="Nombre del alumno"
+          className="futurista-input"
         />
-        <button
-          type="submit"
-          style={{ padding: "8px 12px", background: "#4CAF50", color: "white", border: "none", cursor: "pointer" }}
-        >
-          Agregar
+        <button type="submit" className="futurista-btn futurista-btn-push">
+          追加 Añadir
         </button>
       </form>
 
+      {/* Panel de Información general */}
+      <div className="futurista-info">
+        <div className="futurista-info-item">
+          <span className="futurista-info-label">総数 // Total Alumnos</span>
+          <span className="futurista-info-valor">{alumnos.length}</span>
+        </div>
+        <div className="futurista-info-item">
+          <span className="futurista-info-label">セク // Sección</span>
+          <span className="futurista-info-valor">A-1</span>
+        </div>
+      </div>
+
       {/* Renderizar la vista */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <div className="futurista-pila" style={{ borderTop: "2px solid #545147" }}>
         {alumnos.length === 0 ? (
-          <p style={{ color: "#999", textAlign: "center" }}>
-            No hay datos que mostrar
-          </p>
+          <p className="futurista-vacia">空 // No hay registros que mostrar</p>
         ) : (
           alumnos.map((alumno) => (
             <div
               key={alumno.id}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "4px", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              className="futurista-item futurista-item-normal"
+              style={{ justifyContent: "space-between" }}
             >
-              <div>
+              <div style={{ textAlign: "left" }}>
                 <strong>{alumno.nombre}</strong>
-                <br />
-                <span style={{ fontSize: "12px", color: "#666" }}>
-                  Asistencias: {alumno.asistencia}
-                </span>
+                <div style={{ fontSize: "11px", opacity: 0.7, marginTop: "2px" }}>
+                  出席 // Asistencias: {alumno.asistencia}
+                </div>
               </div>
 
-              {/* ← NUEVO: botones para llamar a las funciones */}
+              {/* Botones: ahora ELIMINAR va primero, luego EDITAR */}
               <div style={{ display: "flex", gap: "6px" }}>
                 <button
-                  onClick={() => actualizar(alumno.id)}
-                  style={{ background: "#1e88e5", color: "white", border: "none", padding: "6px 10px", cursor: "pointer" }}
+                  onClick={() => eliminarObjeto(alumno.id)}
+                  className="futurista-btn"
+                  style={{ padding: "4px 8px", fontSize: "0.75rem", borderColor: "#bc1c30", color: "#bc1c30" }}
                 >
-                  Editar
+                  削除 X
                 </button>
                 <button
-                  onClick={() => eliminarObjeto(alumno.id)}
-                  style={{ background: "#e53935", color: "white", border: "none", padding: "6px 10px", cursor: "pointer" }}
+                  onClick={() => actualizar(alumno.id)}
+                  className="futurista-btn"
+                  style={{ padding: "4px 8px", fontSize: "0.75rem", borderColor: "#545147", color: "#545147" }}
                 >
-                  Eliminar
+                  編集 Editar
                 </button>
               </div>
             </div>
