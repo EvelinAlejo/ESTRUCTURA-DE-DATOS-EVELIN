@@ -1,7 +1,8 @@
 import Pilas from "./componentes/Pilas";
 import EjemploArreglo from "./componentes/EjemploArreglo";
 import "./index.css";
-import Ejemplo2 from "./componentes/Ejemplo2";  // ✅ el nombre coincide con el archivo
+import Ejemplo2 from "./componentes/Ejemplo2";
+import PagePersonas from "./componentes/PagePersonas";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
       {/* Aquí se muestra el componente del arreglo */}
       <EjemploArreglo />
 
-      {/* Aquí se muestra el Ejemplo2  */}
+      {/* Aquí se muestra el Ejemplo2 */}
       <Ejemplo2 />
+
+      {/* Aquí se muestra la página de personas (usa GestorDePersonas internamente) */}
+      <PagePersonas />
     </div>
   );
 }
